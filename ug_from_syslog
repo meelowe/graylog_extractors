@@ -1,0 +1,34 @@
+{
+  "extractors": [
+    {
+      "title": "SPLIT",
+      "extractor_type": "split_and_index",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "message",
+      "target_field": "Last_part",
+      "extractor_config": {
+        "index": 8,
+        "split_by": "|"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    },
+    {
+      "title": "EVERYTHING",
+      "extractor_type": "grok",
+      "converters": [],
+      "order": 0,
+      "cursor_strategy": "copy",
+      "source_field": "Last_part",
+      "target_field": "",
+      "extractor_config": {
+        "grok_pattern": "suser=%{USERNAME:SOURCE_USERNAME} act=%{WORD:ACTION} cs1Label=%{WORD} cs1=%{GREEDYDATA:RULE_NAME} src=%{IPV4:SOURCE_IP} spt=%{BASE10NUM:SOURCE_PORT} cs2Label=%{WORD} cs2=%{GREEDYDATA:SOURCE_ZONE} app=%{GREEDYDATA:WORD} proto=%{WORD:PROTOCOL} dst=%{IPV4:DESTINATION_IP} dpt=%{BASE10NUM:DESTINATION_PORT} cs4Label=%{WORD} cs4=%{GREEDYDATA:DESTINATION_ZONE} sourceTranslatedAddress=%{IPV4:SRC_TRANS_ADDR} sourceTranslatedPort=%{BASE10NUM:SRC_TRANS_PORT} destinationTranslatedAddress=%{IPV4:DST_TRANS_ADDR} destinationTranslatedPort=%{BASE10NUM:DST_TRANS_PORT} in=%{BASE10NUM:BYTES_IN} out=%{BASE10NUM:BYTES_OUT}"
+      },
+      "condition_type": "none",
+      "condition_value": ""
+    }
+  ],
+  "version": "5.1.13"
+}
